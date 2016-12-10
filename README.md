@@ -27,5 +27,3 @@ basic mapping language support<br />
 # TODO
 many things...<br />
 
-# License
-MIT
