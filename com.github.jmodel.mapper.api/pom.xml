@@ -1,0 +1,43 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<relativePath>../com.github.jmodel.mapper.parent/pom.xml</relativePath>
+		<groupId>com.github.jmodel</groupId>
+		<artifactId>com.github.jmodel.mapper.parent</artifactId>
+		<version>0.0.1</version>
+	</parent>
+
+	<artifactId>com.github.jmodel.mapper.api</artifactId>
+	<packaging>eclipse-plugin</packaging>
+
+	<name>jmodel-mapper API</name>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.github.jmodel</groupId>
+			<artifactId>com.github.jmodel.api</artifactId>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-compiler-plugin</artifactId>
+				<configuration>
+					<compilerArguments>
+						<properties>${project.basedir}/.settings/org.eclipse.jdt.core.prefs</properties>
+					</compilerArguments>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>
+
+
+
+
+
+

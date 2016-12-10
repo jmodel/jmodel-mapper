@@ -1,0 +1,113 @@
+grammar com.github.jmodel.mapper.plugin.MappingLanguage with org.eclipse.xtext.xbase.Xbase
+
+generate mappingLanguage "http://www.github.com/jianni/jmodel-mapper/MappingLanguage"
+import "http://www.eclipse.org/xtext/xbase/Xbase" as xbase
+
+Mapping:
+	'mapping' name=QualifiedName ('extends' superType=[Mapping|QualifiedName])? '{' from=From to=To body=Body '}';
+
+From:
+	'from:' name=Format ('[' schema=QualifiedName ']')?;
+
+To:
+	'to:' name=Format ('(' bean=QualifiedName ')')? ('[' schema=QualifiedName ']')?;
+
+Body returns xbase::XBlockExpression:
+	{Body}
+	blocks+=Block+;
+
+Block returns xbase::XBlockExpression:
+	{Block}
+	(absolutePath=AbsolutePath)? sourceModelPath=ModelPathExpr (sourceRecursive=Recursive)? '=>' targetModelPath=ModelPathExpr  (targetRecursive=Recursive)? (isAppend='+')?
+	'{' (filter=Filter)?
+	blockContents+=BlockContent* '};';
+
+BlockContent:
+	{BlockContent}
+	content = (FieldMapping | Block);
+
+Recursive:
+	'(*)';
+	
+AbsolutePath:
+	'#'+;
+
+ModelPathExpr:
+	('.' | ValidID) ('[]')? (=> '.' ValidID ('[]')?)*;
+
+Filter:
+	{Filter}
+	':' expression=XOrExpression;
+
+Variable returns xbase::XExpression:
+	{Variable}
+	expression=VariablePath;
+
+VariablePath:
+	'${' ValidID '}';
+
+FieldMapping returns xbase::XBlockExpression:
+	{FieldMapping}
+	expression=(SingleTargetFieldMapping | IfTargetFieldsMapping);
+
+SingleTargetFieldMapping returns xbase::XExpression:
+	{SingleTargetFieldMapping}
+	sourceFieldPath=SourceFieldPath '=>' targetFieldPath=TargetFieldPath ';';
+
+TargetFieldPath returns xbase::XExpression:
+	{TargetFieldPath}
+	expression=ValidID ('(' dataType=DataType ')')?;
+
+SourceFieldPath returns xbase::XExpression:
+	{SourceFieldPath}
+	expression=(SourceFieldPathXLiteral | SourceFieldPathXParenthesizedExpression | SingleSourceFieldPath | Variable);
+
+SourceFieldPathXLiteral returns xbase::XExpression:
+	{SourceFieldPathXLiteral}
+	content=XLiteral;
+
+SingleSourceFieldPath returns xbase::XExpression:
+	{SingleSourceFieldPath}
+	(absolutePath=AbsolutePath)? content=QualifiedName ('(' dataType=DataType ')')?;
+
+SourceFieldPathXParenthesizedExpression returns xbase::XExpression:
+	{SourceFieldPathXParenthesizedExpression}
+	content=XParenthesizedExpression;
+
+XPrimaryExpression returns xbase::XExpression:
+	XBlockExpression |
+	XLiteral |
+	XIfExpression |
+	XParenthesizedExpression |
+	SingleSourceFieldPath |
+	Variable;
+
+OpCompare:
+	'>=' | '<' '=' | '>' | '<' | 'in';
+
+IfTargetFieldsMapping returns xbase::XExpression:
+	{IfTargetFieldsMapping}
+	sourceFieldPathIf=SourceFieldPathIf;
+
+SourceFieldPathIf returns xbase::XIfExpression:
+	{SourceFieldPathIf}
+	"IF" if=XOrExpression "THEN"
+	then=SourceFieldPathSetting
+	(else=SourceFieldPathElseIf | "ELSE" else=SourceFieldPathSetting)?
+	"ENDIF";
+
+SourceFieldPathElseIf returns xbase::XIfExpression:
+	{SourceFieldPathElseIf}
+	"ELSEIF" if=XOrExpression "THEN"
+	then=SourceFieldPathSetting
+	(else=SourceFieldPathElseIf | "ELSE" else=SourceFieldPathSetting)?;
+
+SourceFieldPathSetting returns xbase::XBlockExpression:
+	{SourceFieldPathSetting}
+	set+=SingleTargetFieldMapping+;
+
+enum Format:
+	XML='XML' | JSON='JSON' | BEAN='BEAN';
+
+enum DataType:
+	STR='STR' | INT='INT' | LONG='LONG' | BOOL='BOOL' | DEC='DEC' | DATE='DATE';
