@@ -1,6 +1,6 @@
 grammar com.github.jmodel.mapper.plugin.MappingLanguage with org.eclipse.xtext.xbase.Xbase
 
-generate mappingLanguage "http://www.github.com/jianni/jmodel-mapper/MappingLanguage"
+generate mappingLanguage "http://www.github.com/jmodel/jmodel-mapper/MappingLanguage"
 import "http://www.eclipse.org/xtext/xbase/Xbase" as xbase
 
 Mapping:

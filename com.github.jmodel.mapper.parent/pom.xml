@@ -18,12 +18,12 @@
 		<module>../com.github.jmodel.mapper.plugin.ui</module>
 		<module>../com.github.jmodel.mapper.plugin.updatesite</module>
 	</modules>
-	<url>https://github.com/jianni/jmodel-mapper</url>
+	<url>https://github.com/jmodel/jmodel-mapper</url>
 	<description>An extensible model mapping framework, compose of an eclipse plugin (provide a simple model mapping DSL) and a model mapping core</description>
 	<scm>
-		<url>https://github.com/jianni/jmodel-mapper.git</url>
-		<connection>scm:git:git@github.com:jianni/jmodel-mapper.git</connection>
-		<developerConnection>scm:git:git@github.com:jianni/jmodel-mapper.git</developerConnection>
+		<url>https://github.com/jmodel/jmodel-mapper.git</url>
+		<connection>scm:git:git@github.com:jmodel/jmodel-mapper.git</connection>
+		<developerConnection>scm:git:git@github.com:jmodel/jmodel-mapper.git</developerConnection>
 	</scm>
 
 	<properties>
