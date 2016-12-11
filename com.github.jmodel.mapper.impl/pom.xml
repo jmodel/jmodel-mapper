@@ -3,9 +3,9 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<relativePath>../com.github.jmodel.mapper.parent/pom.xml</relativePath>
+		<relativePath>../../jmodel/com.github.jmodel.parent/pom.xml</relativePath>
 		<groupId>com.github.jmodel</groupId>
-		<artifactId>com.github.jmodel.mapper.parent</artifactId>
+		<artifactId>com.github.jmodel.parent</artifactId>
 		<version>0.0.1</version>
 	</parent>
 
@@ -35,12 +35,13 @@
 		</dependency>
 		<dependency>
 			<groupId>com.github.jmodel</groupId>
-			<artifactId>com.github.jmodel.mapper.api</artifactId>
+			<artifactId>com.github.jmodel.impl</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.github.jmodel</groupId>
-			<artifactId>com.github.jmodel.impl</artifactId>
+			<artifactId>com.github.jmodel.mapper.api</artifactId>
+			<version>${project.version}</version>
 		</dependency>
 	</dependencies>
 

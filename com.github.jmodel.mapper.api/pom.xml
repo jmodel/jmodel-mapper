@@ -3,9 +3,9 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<relativePath>../com.github.jmodel.mapper.parent/pom.xml</relativePath>
+		<relativePath>../../jmodel/com.github.jmodel.parent/pom.xml</relativePath>
 		<groupId>com.github.jmodel</groupId>
-		<artifactId>com.github.jmodel.mapper.parent</artifactId>
+		<artifactId>com.github.jmodel.parent</artifactId>
 		<version>0.0.1</version>
 	</parent>
 
@@ -14,26 +14,6 @@
 
 	<name>jmodel-mapper API</name>
 
-	<dependencies>
-		<dependency>
-			<groupId>com.github.jmodel</groupId>
-			<artifactId>com.github.jmodel.api</artifactId>
-		</dependency>
-	</dependencies>
-
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.eclipse.tycho</groupId>
-				<artifactId>tycho-compiler-plugin</artifactId>
-				<configuration>
-					<compilerArguments>
-						<properties>${project.basedir}/.settings/org.eclipse.jdt.core.prefs</properties>
-					</compilerArguments>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
 </project>
 
 
