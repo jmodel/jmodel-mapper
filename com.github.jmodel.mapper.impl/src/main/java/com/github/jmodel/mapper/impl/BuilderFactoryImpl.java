@@ -2,7 +2,6 @@ package com.github.jmodel.mapper.impl;
 
 import com.github.jmodel.FormatEnum;
 import com.github.jmodel.mapper.api.builder.Builder;
-import com.github.jmodel.mapper.impl.builder.BeanBuilder;
 import com.github.jmodel.mapper.impl.builder.JsonNodeBuilder;
 import com.github.jmodel.mapper.impl.builder.JsonStringBuilder;
 import com.github.jmodel.mapper.impl.builder.XmlStringBuilder;

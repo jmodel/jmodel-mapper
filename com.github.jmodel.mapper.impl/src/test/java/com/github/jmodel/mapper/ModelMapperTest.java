@@ -32,6 +32,7 @@ public class ModelMapperTest {
 
 		} catch (Exception e) {
 			e.printStackTrace();
+			fail("failed");
 		} finally {
 			if (sourceObj != null) {
 				try {
