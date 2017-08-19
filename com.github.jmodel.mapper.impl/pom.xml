@@ -3,10 +3,10 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<relativePath>../../jmodel/com.github.jmodel.parent/pom.xml</relativePath>
+		<relativePath>../com.github.jmodel.mapper.parent/pom.xml</relativePath>
 		<groupId>com.github.jmodel</groupId>
-		<artifactId>com.github.jmodel.parent</artifactId>
-		<version>0.0.1</version>
+		<artifactId>com.github.jmodel.mapper.parent</artifactId>
+		<version>0.0.2</version>
 	</parent>
 
 	<artifactId>com.github.jmodel.mapper.impl</artifactId>
@@ -15,12 +15,13 @@
 	<name>jmodel-mapper Implementation</name>
 
 	<dependencies>
+
 		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>${junit.version}</version>
-			<scope>test</scope>
+			<groupId>com.github.jmodel</groupId>
+			<artifactId>com.github.jmodel.mapper.api</artifactId>
+			<version>${project.version}</version>
 		</dependency>
+
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-core</artifactId>
@@ -33,16 +34,15 @@
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
 		</dependency>
+
+		<!-- for test -->
 		<dependency>
-			<groupId>com.github.jmodel</groupId>
-			<artifactId>com.github.jmodel.impl</artifactId>
-			<version>${project.version}</version>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
 		</dependency>
-		<dependency>
-			<groupId>com.github.jmodel</groupId>
-			<artifactId>com.github.jmodel.mapper.api</artifactId>
-			<version>${project.version}</version>
-		</dependency>
+
 	</dependencies>
 
 </project>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<hello>
+	<EffectiveDate>2016-08-25</EffectiveDate>
+	<ExpiryDate>2017-08-24</ExpiryDate>
+	<SalesChannelOrg>
+		<PartyName>jmodel party name</PartyName>
+		<PartyAddressList>
+			<IsPrimaryAddress>Y</IsPrimaryAddress>
+			<AddressLine2>address line 2</AddressLine2>
+			<Country>1</Country>
+			<AddressLine1>address line 1</AddressLine1>
+			<City>310100</City>
+			<Province>310000</Province>
+		</PartyAddressList>
+		<PartyContactList>
+			<IsPrimaryContact>Y</IsPrimaryContact>
+			<Name>jmodel contact name</Name>
+		</PartyContactList>
+	</SalesChannelOrg>
+	<PolicyCustomerList>
+		<Customer>
+			<PartyCode>001265</PartyCode>
+			<PartyType>21</PartyType>
+			<PartyAddressList>
+				<IsPrimaryAddress>Y</IsPrimaryAddress>
+				<AddressLine2>jmodel address line 2</AddressLine2>
+				<Country>1</Country>
+				<AddressLine1>jmodel address line 1</AddressLine1>
+				<City>310100</City>
+				<Province>310000</Province>
+			</PartyAddressList>
+			<PartyContactList>
+				<IsPrimaryContact>Y</IsPrimaryContact>
+				<Name>jmodel contact name</Name>
+			</PartyContactList>
+		</Customer>
+	</PolicyCustomerList>
+	<PolicyCustomerList>
+		<Customer>
+			<PartyType>21</PartyType>
+			<PartyAddressList>
+				<IsPrimaryAddress>Y</IsPrimaryAddress>
+				<AddressLine2>jmodel address line 2</AddressLine2>
+				<Country>1</Country>
+				<AddressLine1>jmodel address line 1</AddressLine1>
+				<City>310100</City>
+				<Province>310000</Province>
+			</PartyAddressList>
+			<PartyContactList>
+				<IsPrimaryContact>Y</IsPrimaryContact>
+				<Name>jmodel contact name</Name>
+			</PartyContactList>
+		</Customer>
+	</PolicyCustomerList>
+	<PolicyLobList>
+		<ProductId>12345</ProductId>
+		<PolicyCoverageList />
+		<PolicyRiskList>
+			<InsuredId>111111</InsuredId>
+			<SumInsured>1234567</SumInsured>
+			<Address>test</Address>
+			<City>310100</City>
+			<Province>310000</Province>
+			<Country>1</Country>
+			<PolicyCoverageList />
+		</PolicyRiskList>
+	</PolicyLobList>
+</hello>
