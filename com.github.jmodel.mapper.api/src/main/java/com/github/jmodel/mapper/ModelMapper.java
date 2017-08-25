@@ -13,15 +13,21 @@ import com.github.jmodel.mapper.api.MappingEngineFactoryService;
 import com.github.jmodel.mapper.api.domain.Mapping;
 
 /**
- * Model mapper.
+ * Public API for model mapper.
  * 
  * @author jianni@hotmail.com
  *
  */
 public class ModelMapper {
 
+	/**
+	 * JDK Logger
+	 */
 	private final static Logger logger = Logger.getLogger(ModelMapper.class.getName());
 
+	/**
+	 * The pattern of mapping URI.
+	 */
 	private static String NAME_PATTERN = "([a-zA-Z_][a-zA-Z\\d_]*\\.)*[a-zA-Z_][a-zA-Z\\d_]*";
 
 	public static <T> T convert(Object sourceObj, String mappingURI, Class<T> valueType) throws ModelException {
