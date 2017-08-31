@@ -1,0 +1,11 @@
+mapping com.github.jmodel.mapper.example.Json2Json {
+	
+	from: JSON    
+	to: JSON
+	 
+	Source => Target {
+		Content => . {
+			Name => MyName; 
+		};
+	};     
+}   

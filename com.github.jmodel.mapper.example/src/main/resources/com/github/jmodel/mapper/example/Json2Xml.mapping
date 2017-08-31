@@ -1,0 +1,11 @@
+mapping com.github.jmodel.mapper.example.Json2Xml {
+	
+	from: JSON    
+	to: XML
+	 
+	Source => Target {
+		Content => . {
+			Name => MyName; 
+		};
+	};     
+}   

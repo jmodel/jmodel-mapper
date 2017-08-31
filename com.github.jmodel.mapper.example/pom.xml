@@ -9,31 +9,30 @@
 		<version>0.0.2</version>
 	</parent>
 
-	<artifactId>com.github.jmodel.mapper.impl</artifactId>
+	<artifactId>com.github.jmodel.mapper.example</artifactId>
 	<packaging>jar</packaging>
 
-	<name>jmodel-mapper Implementation</name>
+	<name>jmodel-mapper Example</name>
 
 	<dependencies>
 
 		<dependency>
 			<groupId>com.github.jmodel</groupId>
 			<artifactId>com.github.jmodel.mapper.api</artifactId>
-			<version>${project.version}</version>
+			<version>0.0.2</version>
 		</dependency>
 
 		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-core</artifactId>
+			<groupId>com.github.jmodel</groupId>
+			<artifactId>com.github.jmodel.mapper.impl</artifactId>
+			<version>0.0.2</version>
 		</dependency>
+
 		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-databind</artifactId>
+			<groupId>com.github.jmodel</groupId>
+			<artifactId>com.github.jmodel.impl</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-lang3</artifactId>
-		</dependency>
+
 
 		<!-- for test -->
 		<dependency>
@@ -43,7 +42,10 @@
 		</dependency>
 
 	</dependencies>
-
 </project>
+
+
+
+
 
 
