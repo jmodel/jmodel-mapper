@@ -2,7 +2,6 @@ package com.github.jmodel.mapper;
 
 import java.lang.reflect.Method;
 import java.util.Map;
-import java.util.logging.Logger;
 import java.util.regex.Pattern;
 
 import com.github.jmodel.FormatEnum;
@@ -21,20 +20,47 @@ import com.github.jmodel.mapper.api.domain.Mapping;
 public class ModelMapper {
 
 	/**
-	 * JDK Logger
-	 */
-	private final static Logger logger = Logger.getLogger(ModelMapper.class.getName());
-
-	/**
 	 * The pattern of mapping URI.
 	 */
 	private static String NAME_PATTERN = "([a-zA-Z_][a-zA-Z\\d_]*\\.)*[a-zA-Z_][a-zA-Z\\d_]*";
 
+	/**
+	 * Convert sourceObj to a target object by mapping configuration. The type of
+	 * target object is specified by valueType. The mapping engine and the value
+	 * type is extendible.
+	 * 
+	 * @param sourceObj
+	 *            the source object
+	 * @param mappingURI
+	 *            the mapping configuration written in mapping DSL
+	 * @param valueType
+	 *            the type of target object
+	 * @return the target object
+	 * @throws ModelException
+	 *             the jmodel exception
+	 */
 	public static <T> T convert(Object sourceObj, String mappingURI, Class<T> valueType) throws ModelException {
 
 		return convert(sourceObj, mappingURI, null, valueType);
 	}
 
+	/**
+	 * Convert sourceObj to a target object by mapping configuration with arguments
+	 * support. The type of target object is specified by valueType. The mapping
+	 * engine and the value type is extendible.
+	 * 
+	 * @param sourceObj
+	 *            the source object
+	 * @param mappingURI
+	 *            the mapping configuration written in mapping DSL
+	 * @param argsMap
+	 *            arguments used in mapping DSL
+	 * @param valueType
+	 *            the type of target object
+	 * @return the target object
+	 * @throws ModelException
+	 *             the jmodel exception
+	 */
 	public static <T> T convert(Object sourceObj, String mappingURI, Map<String, Object> argsMap, Class<T> valueType)
 			throws ModelException {
 
@@ -42,20 +68,13 @@ public class ModelMapper {
 		FormatEnum toFormat = null;
 
 		try {
-
-			final Mapping mapping = getMapping(mappingURI);
-			logger.info(() -> "The mapping is constructed : " + mappingURI);
-
+			Mapping mapping = getMapping(mappingURI);
 			toFormat = mapping.getToFormat();
-			logger.info(() -> "The mapping : " + mappingURI + "will get result in " + mapping.getToFormat());
-
 			mappingEngine = MappingEngineFactoryService.getInstance().getMappingEngine(toFormat);
 			return mappingEngine.convert(sourceObj, mapping, argsMap, valueType);
-
 		} catch (Exception e) {
 			throw new ModelException("Failed to convert model", e);
 		} finally {
-
 			try {
 				MappingEngineFactoryService.getInstance().releaseMappingEngine(toFormat, mappingEngine);
 			} catch (Exception e) {
@@ -63,20 +82,34 @@ public class ModelMapper {
 		}
 	}
 
+	/**
+	 * Convert sourceObj to a target object with different format.The type of target
+	 * object is specified by valueType. The mapping engine and the value type is
+	 * extendible.
+	 * 
+	 * @param sourceObj
+	 *            the source object
+	 * @param fromFormat
+	 *            the format of source object
+	 * @param toFormat
+	 *            the format of target object
+	 * @param valueType
+	 *            the type of target object
+	 * @return the target object
+	 * @throws ModelException
+	 *             the jmodel exception
+	 */
 	public static <T> T convert(Object sourceObj, FormatEnum fromFormat, FormatEnum toFormat, Class<T> valueType)
 			throws ModelException {
 
 		MappingEngine mappingEngine = null;
 
 		try {
-
 			mappingEngine = MappingEngineFactoryService.getInstance().getMappingEngine(toFormat);
 			return mappingEngine.convert(sourceObj, fromFormat, toFormat, valueType);
-
 		} catch (Exception e) {
 			throw new ModelException("Failed to convert model", e);
 		} finally {
-
 			try {
 				MappingEngineFactoryService.getInstance().releaseMappingEngine(toFormat, mappingEngine);
 			} catch (Exception e) {
@@ -84,19 +117,30 @@ public class ModelMapper {
 		}
 	}
 
+	/**
+	 * Convert source model to a target object.The type of target object is
+	 * specified by valueType. The mapping engine and the value type is extendible.
+	 * 
+	 * @param sourceModel
+	 *            the source model
+	 * @param toFormat
+	 *            the format of target object
+	 * @param valueType
+	 *            the type of target object
+	 * @return the target object
+	 * @throws ModelException
+	 *             the jmodel exception
+	 */
 	public static <T> T convert(Model sourceModel, FormatEnum toFormat, Class<T> valueType) throws ModelException {
 
 		MappingEngine mappingEngine = null;
 
 		try {
-
 			mappingEngine = MappingEngineFactoryService.getInstance().getMappingEngine(toFormat);
 			return mappingEngine.convert(sourceModel, toFormat, valueType);
-
 		} catch (Exception e) {
 			throw new ModelException("Failed to convert model", e);
 		} finally {
-
 			try {
 				MappingEngineFactoryService.getInstance().releaseMappingEngine(toFormat, mappingEngine);
 			} catch (Exception e) {
@@ -104,6 +148,15 @@ public class ModelMapper {
 		}
 	}
 
+	/**
+	 * Get mapping configuration instance by mapping URI.
+	 * 
+	 * @param mappingURI
+	 *            the mapping configuration URL
+	 * @return the mapping instance
+	 * @throws ModelException
+	 *             the jmodel exception
+	 */
 	private static Mapping getMapping(String mappingURI) throws ModelException {
 
 		if (mappingURI == null || !Pattern.matches(NAME_PATTERN, mappingURI)) {
