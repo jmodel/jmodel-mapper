@@ -17,8 +17,8 @@ import com.github.jmodel.api.domain.Model;
  */
 public class MappingHelper {
 
-	public static void buildRelationForSubModel(Model parentModel, Model subModel) {
-		
+	public static void buildRelationForSubModel(Model parentModel, Model subModel, int index) {
+
 		subModel.setParentModel(parentModel);
 		subModel.setFieldPathMap(parentModel.getFieldPathMap());
 		subModel.setModelPathMap(parentModel.getModelPathMap());
@@ -26,8 +26,8 @@ public class MappingHelper {
 		String parentModelPath = parentModel.getModelPath();
 		if (subModel instanceof Entity) {
 			if (parentModel instanceof Array) {
-				subModel.setModelPath(parentModelPath.substring(0, parentModelPath.lastIndexOf("[")) + "["
-						+ (parentModel.getSubModels().size() - 1) + "]");
+				subModel.setModelPath(
+						parentModelPath.substring(0, parentModelPath.lastIndexOf("[")) + "[" + index + "]");
 			} else {
 				subModel.setModelPath(parentModelPath + "." + subModel.getName());
 			}
@@ -42,8 +42,9 @@ public class MappingHelper {
 
 		List<Model> subSubModels = subModel.getSubModels();
 		if (subSubModels != null) {
-			for (Model subSubModel : subSubModels) {
-				buildRelationForSubModel(subModel, subSubModel);
+			for (int i = 0; i < subSubModels.size(); i++) {
+				Model subSubModel = subSubModels.get(i);
+				buildRelationForSubModel(subModel, subSubModel, i);
 			}
 		}
 	}
@@ -67,17 +68,14 @@ public class MappingHelper {
 		modelPath[1] = targetModelPath;
 		modelPath[2] = targetIndex + "";
 
-		doIt(rootSourceModel, rootTargetModel, modelPath, mySourceModel, myTargetModel, sourceModelPath, targetModelPath, isAppend, p, c);
+		doIt(rootSourceModel, rootTargetModel, modelPath, mySourceModel, myTargetModel, sourceModelPath,
+				targetModelPath, isAppend, p, c);
 	}
 
 	@SuppressWarnings("unchecked")
-	private static <T> void doIt(final Model rootSourceModel, final Model rootTargetModel, final String[] modelPath, final Model mySourceModel, final Model myTargetModel,
-			final String sourceModelPath, final String targetModelPath, final boolean isAppend,
-			final Predicate<String> p, final Consumer<T> c) {
-
-		if (modelPath[2] == null || modelPath[2].trim().length() == 0) {
-			modelPath[2] = "0";
-		}
+	private static <T> void doIt(final Model rootSourceModel, final Model rootTargetModel, final String[] modelPath,
+			final Model mySourceModel, final Model myTargetModel, final String sourceModelPath,
+			final String targetModelPath, final boolean isAppend, final Predicate<String> p, final Consumer<T> c) {
 
 		/*
 		 * source model is entity
@@ -105,7 +103,7 @@ public class MappingHelper {
 					if (isAppend) {
 						targetEntityModel = (Entity) targetEntityModel.clone();
 						myTargetModel.getSubModels().add(targetEntityModel);
-						MappingHelper.buildRelationForSubModel(myTargetModel, targetEntityModel);
+						MappingHelper.buildRelationForSubModel(myTargetModel, targetEntityModel, 0);
 						modelPath[1] = targetEntityModel.getModelPath();
 						modelPath[2] = (myTargetModel.getSubModels().size() - 1) + "";
 					} else {
@@ -128,10 +126,11 @@ public class MappingHelper {
 		 * source model is array
 		 */
 		List<Model> subSourceEntities = mySourceModel.getSubModels();
-		for (Model subSourceEntity : subSourceEntities) {
+		for (int i = 0; i < subSourceEntities.size(); i++) {
+			Model subSourceEntity = subSourceEntities.get(i);
 			modelPath[0] = subSourceEntity.getModelPath();
 			if (modelPath[0] == null) { // no data in source model
-//				myTargetModel.getParentModel().getSubModels().remove(myTargetModel);
+				// myTargetModel.getParentModel().getSubModels().remove(myTargetModel);
 				break;
 			}
 			if (p != null && !p.test(modelPath[0])) {
@@ -150,17 +149,21 @@ public class MappingHelper {
 				 */
 				Entity targetEntityModel = (Entity) myTargetModel.getSubModels().get(0);
 				if (!targetEntityModel.isUsed()) {
-					modelPath[1] = myTargetModel.getSubModels().get(0).getModelPath();
+					// modelPath[1] = myTargetModel.getSubModels().get(0).getModelPath();
+					String temp = myTargetModel.getSubModels().get(0).getModelPath();
+					modelPath[1] = temp.substring(0, temp.lastIndexOf("[")) + "[0]";
+
 				} else {
 					if (isAppend || (!isAppend
 							&& myTargetModel.getSubModels().size() < mySourceModel.getSubModels().size())) {
 						targetEntityModel = (Entity) targetEntityModel.clone();
 						myTargetModel.getSubModels().add(targetEntityModel);
-						MappingHelper.buildRelationForSubModel(myTargetModel, targetEntityModel);
-						modelPath[1] = targetEntityModel.getModelPath();
-						modelPath[2] = (myTargetModel.getSubModels().size() - 1) + "";
+						MappingHelper.buildRelationForSubModel(myTargetModel, targetEntityModel, i);
+						String temp = targetEntityModel.getModelPath();
+						modelPath[1] = temp.substring(0, temp.lastIndexOf("[")) + "[" + i + "]";
 					} else {
-						modelPath[1] = myTargetModel.getSubModels().get(Integer.valueOf(modelPath[2])).getModelPath();
+						String temp = myTargetModel.getSubModels().get(i).getModelPath();
+						modelPath[1] = temp.substring(0, temp.lastIndexOf("[")) + "[" + i + "]";
 					}
 				}
 				targetEntityModel.setUsed(true);
@@ -177,9 +180,9 @@ public class MappingHelper {
 					for (Model subSubSourceArray : subSourceEntity.getSubModels()) {
 						if (subSubSourceArray instanceof Array
 								&& subSubSourceArray.getName().equals(mySourceModel.getName())) {
-//							targetEntityModel = (Entity) targetEntityModel.clone();
-//							myTargetModel.getSubModels().add(targetEntityModel);
-//							MappingHelper.buildRelationForSubModel(myTargetModel, targetEntityModel);
+							// targetEntityModel = (Entity) targetEntityModel.clone();
+							// myTargetModel.getSubModels().add(targetEntityModel);
+							// MappingHelper.buildRelationForSubModel(myTargetModel, targetEntityModel);
 							arrayMapping(rootSourceModel, rootTargetModel, subSubSourceArray, myTargetModel,
 									subSubSourceArray.getModelPath(), myTargetModel.getModelPath(), 0, true, p, c);
 							break;
