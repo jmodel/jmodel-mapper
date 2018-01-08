@@ -179,7 +179,6 @@ public class ModelMapper {
 		} catch (Exception e) {
 			throw new ModelException("Could not get instance of Mapping", e);
 		}
-
 	}
 
 }
