@@ -102,7 +102,7 @@ public interface MappingEngine {
 	 *            type of return
 	 * @param <T>
 	 *            type of return
-	 * @return
+	 * @return builder
 	 */
 	public <T> Builder getBuilder(Class<T> valueType);
 

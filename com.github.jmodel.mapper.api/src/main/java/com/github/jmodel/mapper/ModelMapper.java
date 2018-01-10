@@ -35,6 +35,8 @@ public class ModelMapper {
 	 *            the mapping configuration written in mapping DSL
 	 * @param valueType
 	 *            the type of target object
+	 * @param <T>
+	 *            target object
 	 * @return the target object
 	 * @throws ModelException
 	 *             the jmodel exception
@@ -57,6 +59,8 @@ public class ModelMapper {
 	 *            arguments used in mapping DSL
 	 * @param valueType
 	 *            the type of target object
+	 * @param <T>
+	 *            target object
 	 * @return the target object
 	 * @throws ModelException
 	 *             the jmodel exception
@@ -95,6 +99,8 @@ public class ModelMapper {
 	 *            the format of target object
 	 * @param valueType
 	 *            the type of target object
+	 * @param <T>
+	 *            target object
 	 * @return the target object
 	 * @throws ModelException
 	 *             the jmodel exception
@@ -127,6 +133,8 @@ public class ModelMapper {
 	 *            the format of target object
 	 * @param valueType
 	 *            the type of target object
+	 * @param <T>
+	 *            target object
 	 * @return the target object
 	 * @throws ModelException
 	 *             the jmodel exception
