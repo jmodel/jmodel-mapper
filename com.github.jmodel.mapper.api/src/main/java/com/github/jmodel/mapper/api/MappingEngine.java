@@ -4,7 +4,7 @@ import java.util.Map;
 
 import com.github.jmodel.FormatEnum;
 import com.github.jmodel.ModelException;
-import com.github.jmodel.api.domain.Model;
+import com.github.jmodel.api.entity.Model;
 import com.github.jmodel.mapper.api.builder.Builder;
 import com.github.jmodel.mapper.api.domain.Mapping;
 import com.github.jmodel.mapper.spi.MappingEngineFactory;

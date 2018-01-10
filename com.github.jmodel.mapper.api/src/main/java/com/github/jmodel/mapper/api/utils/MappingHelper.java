@@ -4,10 +4,10 @@ import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 
-import com.github.jmodel.api.domain.Array;
-import com.github.jmodel.api.domain.Entity;
-import com.github.jmodel.api.domain.Field;
-import com.github.jmodel.api.domain.Model;
+import com.github.jmodel.api.entity.Array;
+import com.github.jmodel.api.entity.Entity;
+import com.github.jmodel.api.entity.Field;
+import com.github.jmodel.api.entity.Model;
 
 /**
  * Mapping helper.

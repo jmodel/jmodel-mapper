@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 
 import com.github.jmodel.FormatEnum;
 import com.github.jmodel.ModelException;
-import com.github.jmodel.api.domain.Model;
+import com.github.jmodel.api.entity.Model;
 import com.github.jmodel.mapper.api.MappingEngine;
 import com.github.jmodel.mapper.api.MappingEngineFactoryService;
 import com.github.jmodel.mapper.api.domain.Mapping;

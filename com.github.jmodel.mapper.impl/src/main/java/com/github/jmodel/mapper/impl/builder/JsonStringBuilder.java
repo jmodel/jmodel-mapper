@@ -6,7 +6,7 @@ import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.jmodel.api.domain.Model;
+import com.github.jmodel.api.entity.Model;
 import com.github.jmodel.mapper.api.builder.Builder;
 
 public class JsonStringBuilder implements Builder {

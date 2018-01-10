@@ -1,7 +1,7 @@
 package com.github.jmodel.mapper.impl.builder;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import com.github.jmodel.api.domain.Model;
+import com.github.jmodel.api.entity.Model;
 import com.github.jmodel.mapper.api.builder.Builder;
 
 public class JsonNodeBuilder implements Builder {

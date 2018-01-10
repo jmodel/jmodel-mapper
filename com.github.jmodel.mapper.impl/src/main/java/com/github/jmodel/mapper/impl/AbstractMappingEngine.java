@@ -8,15 +8,15 @@ import java.util.Map;
 import com.github.jmodel.FormatEnum;
 import com.github.jmodel.ModelBuilder;
 import com.github.jmodel.ModelException;
-import com.github.jmodel.api.domain.Array;
-import com.github.jmodel.api.domain.Entity;
-import com.github.jmodel.api.domain.Field;
-import com.github.jmodel.api.domain.Model;
-import com.github.jmodel.api.utils.ModelHelper;
+import com.github.jmodel.api.entity.Array;
+import com.github.jmodel.api.entity.Entity;
+import com.github.jmodel.api.entity.Field;
+import com.github.jmodel.api.entity.Model;
 import com.github.jmodel.mapper.api.MappingEngine;
 import com.github.jmodel.mapper.api.builder.Builder;
 import com.github.jmodel.mapper.api.domain.Mapping;
 import com.github.jmodel.mapper.spi.MappingEngineFactory;
+import com.github.jmodel.utils.ModelHelper;
 
 /**
  * Abstract mapping engine.
